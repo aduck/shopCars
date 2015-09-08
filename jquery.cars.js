@@ -1,0 +1,50 @@
+;(function($){
+	$.fn.extend({
+		shopCars:function(){
+			var $cars_btn=$(".J_cars_btn"),
+				$cars_show=$(".J_cars_num"),
+				btn_off_left=$cars_btn.offset().left,
+				btn_off_top=$cars_btn.offset().top,
+				show_off_left=$cars_show.offset().left,
+				show_off_top=$cars_show.offset().top;
+			$cars_btn.click(function(){
+				//禁用按钮
+				$cars_btn.get(0).disabled=true;
+				//发送ajax请求，添加到购物车
+				$.ajax({
+					url:"",
+					type:"GET",
+					data:"",
+					dataType:"json",
+					success:function(data){
+						//
+					},
+					error:function(){
+
+					}
+				});
+				//新建图层
+				var $layer=$("<div></div>");
+				$layer.css({
+					"position":"absolute",
+					"left":"0",
+					"top":"0",
+					"width":"20px",
+					"height":"20px",
+					"border-radius":"50%",
+					"background":"#ccc"
+				}).appendTo($cars_btn);	
+				$cars_btn.css("position","relative");
+				//开启动画
+				$layer.animate({
+					"left":parseInt(show_off_left)-parseInt(btn_off_left)+"px",
+					"top":parseInt(show_off_top)-parseInt(btn_off_top)+"px"
+				},500,function(){
+					$layer.remove();
+					$cars_show.text(parseInt($cars_show.text())+1);
+				});
+				return false;
+			});
+		}
+	});
+})(jQuery);
