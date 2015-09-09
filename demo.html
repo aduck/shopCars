@@ -33,7 +33,12 @@
 <div style="height:400px;"></div>
 <button class="J_cars_btn">加入购物车</button>
 <script>
-$(".J_cars_btn").shopCars();	
+$(".J_cars_btn").shopCars({
+	show:$(".J_cars_num"),  //购物车商品个数容器
+	thumb:"xq01.jpg",  //商品缩略图路径
+	speed:1000, //缩略图滑动速度
+	disabled:true  //是否禁用按钮
+});
 </script>
 </body>
 </html>
